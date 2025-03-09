@@ -4,15 +4,18 @@
     "node": true
   },
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:json/recommended-legacy"
   ],
   "parserOptions": {
     "ecmaVersion": 2020
   },
   "rules": {
-    "no-console": "off"
-  },
-  "linebreak-style": [
-    "error", "windows"
-  ]
+    "no-console": "off",
+    "linebreak-style": [
+      "error", "windows"
+    ],
+    "no-underscore-dangle": "off",
+    "camelcase": "off"
+  }
 }
