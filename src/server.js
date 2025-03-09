@@ -3,19 +3,17 @@ const Hapi = require('@hapi/hapi');
 const Jwt = require('@hapi/jwt');
 const ClientError = require('./exceptions/ClientError');
 
-
-//notes
+// notes
 const notes = require('./api/notes');
 const NotesService = require('./services/postgres/NotesService');
 const NotesValidator = require('./validator/notes');
 
-
-//users
+// users
 const users = require('./api/users');
 const UsersService = require('./services/postgres/UsersService');
 const UsersValidator = require('./validator/users');
 
-//authentications
+// authentications
 const authentications = require('./api/authentications');
 const AuthenticationsService = require('./services/postgres/AuthenticationsService');
 const TokenManager = require('./tokenize/TokenManager');
@@ -87,7 +85,7 @@ const init = async () => {
   server.ext('onPreResponse', (request, h) => {
     // mendapatkan konteks response dari request
     const { response } = request;
-  
+
     // penanganan client error secara internal.
     if (response instanceof ClientError) {
       const newResponse = h.response({
@@ -97,7 +95,7 @@ const init = async () => {
       newResponse.code(response.statusCode);
       return newResponse;
     }
-      
+
     return h.continue;
   });
 
