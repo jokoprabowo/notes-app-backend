@@ -11,23 +11,23 @@ class NotesService {
   }
 
   async addNote({
-      title, body, tags, owner,
+    title, body, tags, owner,
   }) {
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
-  
+
     const query = {
       text: 'INSERT INTO notes VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id',
       values: [id, title, body, tags, createdAt, updatedAt, owner],
     };
-  
+
     const result = await this._pool.query(query);
-  
+
     if (!result.rows[0].id) {
       throw new InvariantError('Catatan gagal ditambahkan');
     }
-  
+
     return result.rows[0].id;
   }
 
@@ -95,7 +95,6 @@ class NotesService {
       throw new AuthorizationError('Anda tidak berhak mengakses resource ini');
     }
   }
-
 }
 
 module.exports = NotesService;
