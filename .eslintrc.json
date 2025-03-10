@@ -16,6 +16,7 @@
       "error", "windows"
     ],
     "no-underscore-dangle": "off",
-    "camelcase": "off"
+    "camelcase": "off",
+    "function-paren-newline": ["error", "consistent"]
   }
 }
